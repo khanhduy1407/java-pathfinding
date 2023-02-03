@@ -19,6 +19,7 @@ public class DemoPanel extends JPanel {
 
     // OTHER
     boolean goalReached = false;
+    int step = 0;
 
     public DemoPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -116,7 +117,61 @@ public class DemoPanel extends JPanel {
     }
 
     public void search() {
-        if (goalReached == false) {
+        if (goalReached == false && step < 300) {
+            int col = currentNode.col;
+            int row = currentNode.row;
+
+            currentNode.setAsChecked();
+            checkedList.add(currentNode);
+            openList.remove(currentNode);
+
+            // OPEN THE UP NODE
+            if (row - 1 >= 0) {
+                openNode(node[col][row - 1]);
+            }
+            // OPEN THE LEFT NODE
+            if (col - 1 >= 0) {
+                openNode(node[col - 1][row]);
+            }
+            // OPEN THE DOWN NODE
+            if (row + 1 < maxRow) {
+                openNode(node[col][row + 1]);
+            }
+            // OPEN THE RIGHT NODE
+            if (col + 1 < maxCol) {
+                openNode(node[col + 1][row]);
+            }
+
+            // FIND THE BEST NODE
+            int bestNodeIndex = 0;
+            int bestNodeFCost = 999;
+
+            for (int i = 0; i < openList.size(); i++) {
+                // Check if the node's F cost is better
+                if (openList.get(i).fCost < bestNodeFCost) {
+                    bestNodeIndex = i;
+                    bestNodeFCost = openList.get(i).fCost;
+                }
+                // If F cost is equal, check the G cost
+                else if (openList.get(i).fCost == bestNodeFCost) {
+                    if (openList.get(i).gCost < openList.get(bestNodeIndex).gCost) {
+                        bestNodeIndex = i;
+                    }
+                }
+            }
+
+            // After the loop, we get the best node which is our next step
+            currentNode = openList.get(bestNodeIndex);
+
+            if (currentNode == goalNode) {
+                goalReached = true;
+            }
+        }
+        step++;
+    }
+
+    public void autoSearch() {
+        while (goalReached == false) {
             int col = currentNode.col;
             int row = currentNode.row;
 
