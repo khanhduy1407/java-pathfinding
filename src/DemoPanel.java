@@ -24,6 +24,8 @@ public class DemoPanel extends JPanel {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setLayout(new GridLayout(maxRow, maxCol));
+        this.addKeyListener(new KeyHandler(this));
+        this.setFocusable(true);
 
         // PLACE NODES
         int col = 0;
