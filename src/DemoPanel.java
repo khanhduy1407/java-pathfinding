@@ -12,6 +12,7 @@ public class DemoPanel extends JPanel {
 
     // NODE
     Node[][] node = new Node[maxCol][maxRow];
+    Node startNode, goalNode, currentNode;
 
     public DemoPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -32,5 +33,20 @@ public class DemoPanel extends JPanel {
                 row++;
             }
         }
+
+        // SET START AND GOAL NODE
+        setStartNode(3, 6);
+        setGoalNode(11, 3);
+    }
+
+    private void setStartNode(int col, int row) {
+        node[col][row].setAsStart();
+        startNode = node[col][row];
+        currentNode = startNode;
+    }
+
+    private void setGoalNode(int col, int row) {
+        node[col][row].setAsGoal();
+        goalNode = node[col][row];
     }
 }
