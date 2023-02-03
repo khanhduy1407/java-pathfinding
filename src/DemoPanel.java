@@ -37,6 +37,21 @@ public class DemoPanel extends JPanel {
         // SET START AND GOAL NODE
         setStartNode(3, 6);
         setGoalNode(11, 3);
+
+        // PLACE SOLID NODE
+        setSolidNode(10, 2);
+        setSolidNode(10, 3);
+        setSolidNode(10, 4);
+        setSolidNode(10, 5);
+        setSolidNode(10, 6);
+        setSolidNode(10, 7);
+        setSolidNode(6, 2);
+        setSolidNode(7, 2);
+        setSolidNode(8, 2);
+        setSolidNode(9, 2);
+        setSolidNode(11, 7);
+        setSolidNode(12, 7);
+        setSolidNode(6, 1);
     }
 
     private void setStartNode(int col, int row) {
@@ -48,5 +63,9 @@ public class DemoPanel extends JPanel {
     private void setGoalNode(int col, int row) {
         node[col][row].setAsGoal();
         goalNode = node[col][row];
+    }
+
+    private void setSolidNode(int col, int row) {
+        node[col][row].setAsSolid();
     }
 }
