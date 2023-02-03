@@ -219,6 +219,7 @@ public class DemoPanel extends JPanel {
 
             if (currentNode == goalNode) {
                 goalReached = true;
+                trackThePath();
             }
         }
     }
@@ -229,6 +230,19 @@ public class DemoPanel extends JPanel {
             node.setAsOpen();
             node.parent = currentNode;
             openList.add(node);
+        }
+    }
+
+    private void trackThePath() {
+        // Backtrack and draw the best path
+        Node current = goalNode;
+
+        while (current != startNode) {
+            current = current.parent;
+
+            if (current != startNode) {
+                current.setAsPath();
+            }
         }
     }
 }
