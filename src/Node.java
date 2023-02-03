@@ -46,6 +46,23 @@ public class Node extends JButton implements ActionListener {
         solid = true;
     }
 
+    public void setAsOpen() {
+        open = true;
+    }
+
+    public void setAsChecked() {
+        if (start == false && goal == false) {
+            setBackground(Color.orange);
+            setForeground(Color.black);
+        }
+        checked = true;
+    }
+
+    public void setAsPath() {
+        setBackground(Color.green);
+        setForeground(Color.black);
+    }
+
     /**
      * Invoked when an action occurs.
      *
