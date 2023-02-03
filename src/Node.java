@@ -51,7 +51,7 @@ public class Node extends JButton implements ActionListener {
     }
 
     public void setAsChecked() {
-        if (start == false && goal == false) {
+        if (!start && !goal) {
             setBackground(Color.orange);
             setForeground(Color.black);
         }

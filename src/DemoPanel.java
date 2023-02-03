@@ -117,7 +117,7 @@ public class DemoPanel extends JPanel {
     }
 
     public void search() {
-        if (goalReached == false && step < 300) {
+        if (!goalReached && step < 300) {
             int col = currentNode.col;
             int row = currentNode.row;
 
@@ -171,7 +171,7 @@ public class DemoPanel extends JPanel {
     }
 
     public void autoSearch() {
-        while (goalReached == false) {
+        while (!goalReached) {
             int col = currentNode.col;
             int row = currentNode.row;
 
@@ -225,7 +225,7 @@ public class DemoPanel extends JPanel {
     }
 
     private void openNode(Node node) {
-        if (node.open == false && node.checked == false && node.solid == false) {
+        if (!node.open && !node.checked && !node.solid) {
             // If the node is not opened yet, add it to the open list
             node.setAsOpen();
             node.parent = currentNode;
